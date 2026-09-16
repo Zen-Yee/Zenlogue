@@ -1,25 +1,48 @@
-:root {
-  --primary: #f9d9b7;
-  --secondary: #ffb7b2;
-  --tertiary: #fff3e0;
-  --surface: #ffffff;
-
-  --background: #fafafa;
-  --text-primary: #1a1a1a;
-  --text-secondary: #555555;
-}
-
 * {
-  margin: 0;
   box-sizing: border-box;
-  font-style: normal;
-  font-family: sans-serif;
+  margin: 0;
 }
 
-.App {
-  background-color: var(--background);
+:root {
+  /* Brand Colors */
+  --color-primary: #cdf0ea;
+  --color-secondary: #f6c6ea;
+  --color-accent: #faf4b7;
+
+  /* Backgrounds */
+  --color-background: #f9f9f9;
+  --color-surface: #ffffff;
+
+  /* Text */
+  --color-text: #2d3436;
+  --color-text-muted: #636e72;
+  --color-text-light: #ffffff;
+
+  /* Borders */
+  --color-border: #e5e5e5;
+
+  /* States */
+  --color-success: #cdf0ea;
+  --color-warning: #faf4b7;
+  --color-error: #f6c6ea;
+
+  /* Dark */
+  --color-dark: #2d3436;
 }
 
-.fullpage {
-  height: calc(100vh - 40px - 40px);
+.section-title {
+  grid-column: 1 / span 12;
+}
+
+@media (max-width: 1000px) {
+  .section-title {
+    grid-column: 2 / span 6;
+  }
+}
+
+@media (max-width: 575px) {
+  .section-title {
+    grid-column: 1 / span 4;
+    text-align: center;
+  }
 }

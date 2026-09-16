@@ -1,0 +1,19 @@
+.post-page {
+  min-height: calc(100vh - 40px - 100px);
+}
+
+.post-list {
+  grid-column: 1 / span 12;
+}
+
+@media (max-width: 1000px) {
+  .post-list {
+    grid-column: 2 / span 6;
+  }
+}
+
+@media (max-width: 575px) {
+  .post-list {
+    grid-column: 1 / span 4;
+  }
+}

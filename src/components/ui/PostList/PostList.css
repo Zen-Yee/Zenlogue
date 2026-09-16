@@ -1,0 +1,19 @@
+.postfeed-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: auto;
+}
+
+.postfeed-cards {
+  height: auto;
+}
+
+@media (max-width: 1000px) {
+}
+
+@media (max-width: 575px) {
+  .postfeed-container {
+    text-align: center;
+  }
+}

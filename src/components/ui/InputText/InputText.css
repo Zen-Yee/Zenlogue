@@ -1,0 +1,14 @@
+.input-text-label {
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  gap: 10px;
+  font-weight: bold;
+  width: 100%;
+}
+
+.input-text-field {
+  height: 30px;
+  border-radius: 5px;
+  border: 2px solid var(--primary);
+}

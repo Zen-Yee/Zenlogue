@@ -1,0 +1,6 @@
+.reaction-bar {
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  gap: 2%;
+}
