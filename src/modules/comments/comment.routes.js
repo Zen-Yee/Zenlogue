@@ -4,8 +4,9 @@ import { authMiddleware } from "../../middleware/auth.middleware.js";
 
 const router = express.Router();
 
-router.post("/signup", authController.signupSubmit);
-router.post("/login", authController.loginSubmit);
-router.post("/logout", authMiddleware, authController.logout);
+router.get("/:post_id", commentController.displayComments);
+// router.post("/create", authMiddleware, commentController.addComment);
+// router.patch("/:id", authMiddleware, commentController.updateComment);
+// router.delete("/:id", authMiddleware, commentController.deleteComment);
 
 export default router;

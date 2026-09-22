@@ -1,9 +1,8 @@
 import * as postService from "./post.service.js";
-import * as commentService from "./comment.service.js";
 
 export const allPost = async (req, res, next) => {
   try {
-    const posts = await postService.displayAllPosts();
+    const posts = await postService.getPosts();
     res.status(200).json({
       success: true,
       data: posts,
@@ -16,7 +15,7 @@ export const allPost = async (req, res, next) => {
 export const onePost = async (req, res, next) => {
   try {
     const postId = req.params.id;
-    const posts = await postService.displayPost(postId);
+    const posts = await postService.getPostById(postId);
 
     // If it return an empty array when SELECT with the post_id, throw error:
     if (!posts) {
@@ -25,13 +24,9 @@ export const onePost = async (req, res, next) => {
       return next(err);
     }
 
-    // fetch all comments for this post
-    const comments = await commentService.getCommentsByPost(postId);
-
     res.status(200).json({
       success: true,
-      postData: posts,
-      commentsData: comments
+      postData: posts
     });
 
   } catch (err) {
@@ -47,7 +42,7 @@ export const createPost = async (req, res, next) => {
     res.status(200).json({
       success: true,
       postData: newPost,
-      commentsData: []
+
     });
 
   } catch (err) {
@@ -59,7 +54,7 @@ export const updatePost = async (req, res, next) => {
   try {
     const postId = req.params.id;
     const { title, content } = req.body;
-    const updatedPost = await postService.updatePost(postId, title, content);
+    const updatedPost = await postService.updatePost(postId, title, content, req.user.userId);
 
     // If it return an empty array when SELECT with the post_id, throw error:
     if (!updatedPost) {
@@ -68,13 +63,10 @@ export const updatePost = async (req, res, next) => {
       return next(err);
     }
 
-    // fetch all comments for this post
-    const comments = await commentService.getCommentsByPost(postId);
 
     res.status(200).json({
       success: true,
-      postData: updatedPost,
-      commentsData: comments
+      postData: updatedPost
     });
 
   } catch (err) {
@@ -82,14 +74,24 @@ export const updatePost = async (req, res, next) => {
   }
 };
 
-// export const deletePost = async (req, res) => {
-//   try {
-//     const postId = req.params.id;
-//     const posts = await postService.confirmDeletePost(postId);
+export const deletePost = async (req, res, next) => {
+  try {
+    const postId = req.params.id;
+    const deleted = await postService.deletePost(postId, req.user.userId);
+    
+    // If it return an empty array when SELECT with the post_id, throw error:
+    if (!deleted) {
+      const err = new Error("Post not found");
+      err.status = 404;
+      return next(err);
+    }
 
-//     res.redirect("/home");
+    res.status(200).json({
+      success: true,
+      message: "Post deleted" 
+    });
 
-//   } catch (err) {
-//     next(err);
-//   }
-// };
+  } catch (err) {
+    next(err);
+  }
+};

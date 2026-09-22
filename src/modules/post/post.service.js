@@ -1,6 +1,6 @@
 import db from "../../config/pool.js";
 
-export const displayAllPosts = async () => {
+export const getPosts = async () => {
 
   const query = `
     SELECT * FROM public.posts;
@@ -12,7 +12,7 @@ export const displayAllPosts = async () => {
 
 };
 
-export const displayPost = async (postId) => {
+export const getPostById = async (postId) => {
 
     const query = `
       SELECT * FROM public.posts
@@ -27,7 +27,7 @@ export const displayPost = async (postId) => {
 export const createPost = async (post_title, post_content, user_id) => {
 
   const query = `
-    INSERT INTO public.post (title, content, author_id)
+    INSERT INTO public.posts (title, content, author_id)
       VALUES ($1,$2,$3)
       RETURNING *;
   `;
@@ -36,26 +36,27 @@ export const createPost = async (post_title, post_content, user_id) => {
   return result.rows[0];
 };
 
-export const updatePost = async (postId, post_title, post_content) => {
+export const updatePost = async (postId, post_title, post_content, userId) => {
 
   const query = `
-    UPDATE public.post 
-      SET title = $1, content = $2)
-      WHERE post_id = $3
+    UPDATE public.posts 
+      SET title = $1, content = $2
+      WHERE post_id = $3 AND author_id = $4
       RETURNING *;
   `;
 
-   const result = await db.query(query, [post_title, post_content, postId]);
+   const result = await db.query(query, [post_title, post_content, postId, userId]);
   return result.rows[0];
 };
 
-// export const confirmDeletePost = async (postId) => {
+export const deletePost = async (postId, userId) => {
 
-//   const query = `
-//     DELETE FROM public.post
-//       WHERE post_id = $1;
-//   `;
+  const query = `
+    DELETE FROM public.posts
+      WHERE post_id = $1 AND author_id = $2
+      RETURNING *;
+  `;
 
-//   await db.query(query, [postId]);
-//   return result.rows[0];
-// };
+  const result =  await db.query(query, [postId, userId]);
+  return result.rows[0];;
+};

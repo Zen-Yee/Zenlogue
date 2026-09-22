@@ -4,7 +4,7 @@ import dotenv from "dotenv";
 import cookieParser from "cookie-parser";
 
 import authRouter from './src/modules/auth/auth.routes.js';
-//import postRouter from './src/modules/post/post.routes.js';
+import postRouter from './src/modules/post/post.routes.js';
 // import commentRouter from './src/modules/comment/comment.routes.js';
 import errorMiddleware from './src/middleware/error.middleware.js';
 
@@ -22,7 +22,7 @@ app.use(cors({
 
 // Mounting routes
 app.use('/auth', authRouter); // Log in, Log out, Register
-// app.use('/post', postRouter); // fetch posts
+app.use('/post', postRouter); // fetch posts
 // app.use('/comment', commentRouter); // fetch comments
 
 app.use(errorMiddleware);
