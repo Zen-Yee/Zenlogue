@@ -90,7 +90,7 @@ export const loginSubmit = async (req, res, next) => {
       message: "Login Success",
       user: {
         id: user.user_id,
-        username: user.user_name,
+        username: user.username,
         role: user.role,
       },
     });
@@ -101,19 +101,17 @@ export const loginSubmit = async (req, res, next) => {
 
 export const logout = (req, res, next) => {
   try {
-
     res.clearCookie("token", {
       httpOnly: true,
       secure: process.env.NODE_ENV === "production",
       sameSite: "lax",
-      path: "/",
     });
 
     res.status(200).json({
       success: true,
       message: "Logout successful",
     });
-  } catch (error) {
-    next(error); 
+  } catch (err) {
+    next(err); 
   }
 };

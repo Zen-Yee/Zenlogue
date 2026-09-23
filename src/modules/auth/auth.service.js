@@ -29,7 +29,6 @@ export const loginUser = async (username, password) => {
   if (result.rows.length === 0) throw invalidErr();
 
   const user = result.rows[0];
-
   const match = await bcrypt.compare(password, user.password_hash);
 
   if (!match) throw invalidErr();
