@@ -1,8 +1,11 @@
 import * as postService from "./post.service.js";
 
 export const allPost = async (req, res, next) => {
+  const limit = Math.min(parseInt(req.query.limit, 10) || 10, 100);
+  const offset = Math.max(parseInt(req.query.offset, 10) || 0, 0);
+
   try {
-    const posts = await postService.getPosts();
+    const posts = await postService.getPosts(limit, offset);
     res.status(200).json({
       success: true,
       data: posts,
@@ -78,7 +81,7 @@ export const deletePost = async (req, res, next) => {
   try {
     const postId = req.params.id;
     const deleted = await postService.deletePost(postId, req.user.userId);
-    
+
     // If it return an empty array when SELECT with the post_id, throw error:
     if (!deleted) {
       const err = new Error("Post not found");
@@ -88,7 +91,7 @@ export const deletePost = async (req, res, next) => {
 
     res.status(200).json({
       success: true,
-      message: "Post deleted" 
+      message: "Post deleted"
     });
 
   } catch (err) {

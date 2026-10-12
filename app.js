@@ -21,9 +21,9 @@ app.use(cors({
 }));
 
 // Mounting routes
-app.use('/auth', authRouter); // Log in, Log out, Register
-app.use('/post', postRouter); // fetch posts
-// app.use('/comment', commentRouter); // fetch comments
+app.use('/api/auth', authRouter); // Log in, Log out, Register
+app.use('/api/posts', postRouter); // fetch posts
+// app.use('/api/comment', commentRouter); // fetch comments
 
 app.use(errorMiddleware);
 

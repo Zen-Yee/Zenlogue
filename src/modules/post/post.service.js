@@ -1,12 +1,15 @@
 import db from "../../config/pool.js";
 
-export const getPosts = async () => {
+export const getPosts = async (limit, offset) => {
 
   const query = `
-    SELECT * FROM public.posts;
+    SELECT * FROM public.posts
+    ORDER BY post_id
+    LIMIT $1
+    OFFSET $2
   `;
 
-  const result = await db.query(query);
+  const result = await db.query(query, [limit, offset]);
 
   return result.rows;
 
@@ -14,12 +17,12 @@ export const getPosts = async () => {
 
 export const getPostById = async (postId) => {
 
-    const query = `
+  const query = `
       SELECT * FROM public.posts
       WHERE post_id = $1
     `;
 
-    const result = await db.query(query, [postId]);
+  const result = await db.query(query, [postId]);
 
   return result.rows[0];
 };
@@ -32,7 +35,7 @@ export const createPost = async (post_title, post_content, user_id) => {
       RETURNING *;
   `;
 
-   const result = await db.query(query, [post_title, post_content, user_id]);
+  const result = await db.query(query, [post_title, post_content, user_id]);
   return result.rows[0];
 };
 
@@ -45,7 +48,7 @@ export const updatePost = async (postId, post_title, post_content, userId) => {
       RETURNING *;
   `;
 
-   const result = await db.query(query, [post_title, post_content, postId, userId]);
+  const result = await db.query(query, [post_title, post_content, postId, userId]);
   return result.rows[0];
 };
 
@@ -57,6 +60,6 @@ export const deletePost = async (postId, userId) => {
       RETURNING *;
   `;
 
-  const result =  await db.query(query, [postId, userId]);
+  const result = await db.query(query, [postId, userId]);
   return result.rows[0];;
 };
