@@ -11,9 +11,9 @@ function usePosts({ limit = 10, offset = 0 } = {}) {
   const fetchAllPost = async () => {
     try {
       const response = await axios.get(
-        `${API_URL}/posts?offset=${offset}&limit=${limit}`
+        `${API_URL}/api/posts?offset=${offset}&limit=${limit}`
       );
-      setPosts(response.data);
+      setPosts(response.data.data);
     } catch (err) {
       setError(err.message);
     }

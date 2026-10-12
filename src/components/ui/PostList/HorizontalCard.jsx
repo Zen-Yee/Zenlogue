@@ -1,6 +1,8 @@
-import React from "react";
 import ReactionBar from "../ReactionBar/ReactionBar";
 import "./HorizontalCard.css";
+
+import { getPostExcerpt } from "../../../utils/tiptap";
+import {formatDate} from "../../../utils/date" 
 
 function HorizontalCard({
   title,
@@ -19,12 +21,18 @@ function HorizontalCard({
       <div className="card-text">
         <div className="card-title">
           <h3>{title}</h3>
-          <p>{date}</p>
+          <p>{formatDate(date)}</p>
         </div>
         <div className="card-content">
-          <p>{content}</p>
+          {/* <p>{renderPostHTML(content)}</p> */}
+          <p   dangerouslySetInnerHTML={{ __html: getPostExcerpt(content) }}></p>
           <a>Read more</a>
-          <ReactionBar />
+          <ReactionBar
+            className=""
+            LikeCount={LikeCount}
+            DislikeCount={DislikeCount}
+            CommentCount={CommentCount}
+          />
         </div>
       </div>
     </div>

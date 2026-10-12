@@ -1,9 +1,10 @@
 // Register.jsx
-import React, { useState } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../../context/AuthContext";
 import { Link } from "react-router-dom";
 import InputText from "../../../components/ui/InputText/InputText";
+import Spinner from "../../../components/ui/Spinner/Spinner";
 import AuthForm from "../AuthForm/AuthForm";
 import "./Register.css";
 
@@ -16,6 +17,7 @@ function Register() {
   });
 
   const [warning, setWarning] = useState("");
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
   const { setUser } = useAuth();
@@ -29,7 +31,7 @@ function Register() {
         setWarning(
           updated.confirmPassword !== updated.password
             ? "Password does not match"
-            : ""
+            : "",
         );
       }
       return updated;
@@ -44,6 +46,7 @@ function Register() {
       return;
     }
 
+    setLoading(true);
     const res = await fetch("http://localhost:3000/auth/signup", {
       method: "POST",
       credentials: "include", // ← this is required for cookies to be set
@@ -56,6 +59,9 @@ function Register() {
     if (!res.ok) {
       if (res.status === 400 || res.status === 409) {
         setWarning(data.message);
+        setTimeout(() => {
+          setLoading(false);
+        }, 2000);
       } else {
         navigate("/error", {
           state: { message: data.message, status: res.status },
@@ -64,57 +70,68 @@ function Register() {
       return;
     }
 
-    // After successful register/login
     setUser({
       id: data.user.id,
       username: data.user.username,
       role: data.user.role,
     });
 
+    setTimeout(() => {
+      setLoading(false);
+    }, 2000);
+
     navigate("/");
   };
 
   return (
-    <AuthForm
-      title="Join Us!"
-      footer={
-        <p>
-          Already have an account? <Link to="/auth/signin">Sign In</Link>
-        </p>
-      }
-      onSubmit={handleSubmit}
-    >
-      <InputText
-        label="Username :"
-        name="username"
-        type="text"
-        onChange={handleChange}
-        value={form.username}
-      />
-      <InputText
-        label="Email :"
-        name="email"
-        type="email"
-        onChange={handleChange}
-        value={form.email}
-      />
-      <InputText
-        label="Password :"
-        name="password"
-        type="password"
-        onChange={handleChange}
-        value={form.password}
-      />
-      <InputText
-        label="Confirm Password :"
-        name="confirmPassword"
-        type="password"
-        onChange={handleChange}
-        value={form.confirmPassword}
-      />
+    <div>
+      {loading ? (
+        <div>
+          <Spinner />
+        </div>
+      ) : (
+        <AuthForm
+          title="Join Us!"
+          footer={
+            <p>
+              Already have an account? <Link to="/auth/signin">Sign In</Link>
+            </p>
+          }
+          onSubmit={handleSubmit}
+        >
+          <InputText
+            label="Username :"
+            name="username"
+            type="text"
+            onChange={handleChange}
+            value={form.username}
+          />
+          <InputText
+            label="Email :"
+            name="email"
+            type="email"
+            onChange={handleChange}
+            value={form.email}
+          />
+          <InputText
+            label="Password :"
+            name="password"
+            type="password"
+            onChange={handleChange}
+            value={form.password}
+          />
+          <InputText
+            label="Confirm Password :"
+            name="confirmPassword"
+            type="password"
+            onChange={handleChange}
+            value={form.confirmPassword}
+          />
 
-      <p className="warning">{warning}</p>
-    </AuthForm>
+          <p className="warning">{warning}</p>
+        </AuthForm>
+      )}
+    </div>
   );
 }
 

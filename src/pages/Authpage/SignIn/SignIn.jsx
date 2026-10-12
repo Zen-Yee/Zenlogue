@@ -1,9 +1,9 @@
-// SignIn.jsx
-import React, { useState } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../../context/AuthContext";
 import { Link } from "react-router-dom";
 import InputText from "../../../components/ui/InputText/InputText";
+import Spinner from "../../../components/ui/Spinner/Spinner";
 import AuthForm from "../AuthForm/AuthForm";
 
 function SignIn() {
@@ -11,6 +11,11 @@ function SignIn() {
     username: "",
     password: "",
   });
+
+    const [warning, setWarning] = useState("");
+  const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
+  const { setUser } = useAuth();
 
   const handleChange = (e) => {
     setForm({
@@ -22,42 +27,55 @@ function SignIn() {
   const handleSubmit = async (e) => {
     e.preventDefault(); // prevent page reload
 
-    try {
-      const res = await fetch("http://localhost:3000/auth/login", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(form),
-      });
 
-      const data = await res.json();
-
-      if (!res.ok) {
-        if (res.status === 400 || res.status === 409) {
-          setWarning(data.message); // show on form
-        } else {
-          navigate("/error", {
-            // unexpected errors → error page
-            state: { message: data.message, status: res.status },
-          });
-        }
-        return;
-      }
-
-      // After successful register/login
-      setUser({
-        id: data.user.id,
-        username: data.user.username,
-        role: data.user.role,
-      });
-    } catch (err) {
-      console.error(err);
-      navigate("/error", {
-        state: { message: "Network error, please try again." },
-      });
+    if (!form.username || !form.password) {
+      setWarning("Please provide valid credentials");
+      return;
     }
+
+
+    setLoading(true);
+    const res = await fetch("http://localhost:3000/auth/login", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(form),
+    });
+
+    const data = await res.json();
+
+    if (!res.ok) {
+      if (res.status === 400 || res.status === 409) {
+        setWarning(data.message); // show on form
+        setTimeout(() => {
+        setLoading(false);
+        }, 2000);
+      } else {
+        navigate("/error", {
+          state: { message: data.message, status: res.status },
+        });
+      }
+      return;
+    }
+
+    setUser({
+      id: data.user.id,
+      username: data.user.username,
+      role: data.user.role,
+    });
+
+    setTimeout(() => {
+      setLoading(false);
+    }, 2000);
+    navigate("/");
   };
 
   return (
+    <>
+     {loading ? (
+        <div>
+          <Spinner />
+        </div>
+      ) : (
     <AuthForm
       title="Welcome Back!"
       footer={
@@ -80,7 +98,11 @@ function SignIn() {
         onChange={handleChange}
         value={form.password}
       />
+
+       <p className="warning">{warning}</p>
+
     </AuthForm>
+  )}</>
   );
 }
 

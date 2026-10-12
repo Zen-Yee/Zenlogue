@@ -1,7 +1,5 @@
-import React, { useState } from "react";
 import { NavLink, Outlet } from "react-router-dom";
-import InputText from "../../components/ui/InputText/InputText";
-import RoundedButton from "../../components/ui/RoundedButton/RoundedButton";
+
 
 import "./Authpage.css";
 

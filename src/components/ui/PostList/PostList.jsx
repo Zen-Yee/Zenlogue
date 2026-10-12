@@ -1,4 +1,3 @@
-import React, { useState, useEffect } from "react";
 import "./PostList.css";
 import HorizontalCard from "./HorizontalCard";
 
@@ -13,7 +12,7 @@ function PostList({ posts, className = "" }) {
           title={post.title}
           date={post.created_at}
           content={post.content}
-          author={post.username}
+          author={post.author_id}
         />
       ))}
     </div>

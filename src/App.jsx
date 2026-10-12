@@ -10,6 +10,7 @@ import Register from "./pages/Authpage/Register/Register";
 import SignIn from "./pages/Authpage/SignIn/SignIn";
 import Postpage from "./pages/Postpage/Postpage";
 import Displaypage from "./pages/Displaypage/Displaypage";
+import Errorpage from "./pages/Errorpage/Errorpage";
 
 export default function App() {
   return (
@@ -26,6 +27,7 @@ export default function App() {
             </Route>
             <Route path="/post" element={<Postpage />} />
             <Route path="/post/sample" element={<Displaypage />} />
+             <Route path="/error" element={<Errorpage />} />
           </Routes>
           <Footer />
         </BrowserRouter>

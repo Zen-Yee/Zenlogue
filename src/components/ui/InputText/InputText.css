@@ -10,5 +10,6 @@
 .input-text-field {
   height: 30px;
   border-radius: 5px;
-  border: 2px solid var(--primary);
+  border: 2px solid var(--color-border);
+  background-color: var(--color-background);
 }

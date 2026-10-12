@@ -20,6 +20,8 @@
   border-radius: 15px;
   background-color: var(--color-surface);
   border: 2px solid var(--color-border);
+  width:80%;
+  align-self: center;
 }
 
 @media (max-width: 1000px) {

@@ -1,9 +1,18 @@
-import React, { useState } from "react";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
+import { useAuth } from "../../../context/AuthContext";
 import "./Header.css";
 
 function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const { user, logout } = useAuth();
+  const navigate = useNavigate();
+
+const handleLogout = async () => {
+  await logout();
+  navigate("/");
+};
 
   return (
     <header>
@@ -14,9 +23,18 @@ function Header() {
             Home
           </Link>
 
-          <Link to="/auth" onClick={() => setMenuOpen(false)}>
-            Sign In
-          </Link>
+          {user ? (
+            <>
+              <span>Hi, {user.username}</span>
+              <button type="button" onClick={handleLogout}>
+                Log Out
+              </button>
+            </>
+          ) : (
+            <Link to="/auth" onClick={() => setMenuOpen(false)}>
+              Sign In
+            </Link>
+          )}
         </div>
 
         <a className="hamburger" onClick={() => setMenuOpen(!menuOpen)}>
