@@ -3,12 +3,18 @@ import * as postService from "./post.service.js";
 export const allPost = async (req, res, next) => {
   const limit = Math.min(parseInt(req.query.limit, 10) || 10, 100);
   const offset = Math.max(parseInt(req.query.offset, 10) || 0, 0);
+  const { search = "" } = req.query;
 
   try {
-    const posts = await postService.getPosts(limit, offset);
+    const [posts, total] = await Promise.all([
+      postService.getPosts(limit, offset, search),
+      postService.getTotal(search),
+    ]);
+
     res.status(200).json({
       success: true,
       data: posts,
+      total
     });
   } catch (err) {
     next(err);

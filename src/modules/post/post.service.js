@@ -1,18 +1,18 @@
 import db from "../../config/pool.js";
 
-export const getPosts = async (limit, offset) => {
+export const getPosts = async (limit, offset, search = "") => {
+  const term = search.trim();
 
   const query = `
     SELECT * FROM public.posts
+    WHERE ($1 = '' OR title ILIKE '%' || $1 || '%')
     ORDER BY post_id
-    LIMIT $1
-    OFFSET $2
+    LIMIT $2
+    OFFSET $3
   `;
 
-  const result = await db.query(query, [limit, offset]);
-
+  const result = await db.query(query, [term, limit, offset]);
   return result.rows;
-
 };
 
 export const getPostById = async (postId) => {
@@ -61,5 +61,17 @@ export const deletePost = async (postId, userId) => {
   `;
 
   const result = await db.query(query, [postId, userId]);
-  return result.rows[0];;
+  return result.rows[0];
+};
+
+export const getTotal = async (search = "") => {
+  const term = search.trim();
+
+  const query = `
+    SELECT COUNT(*) AS count FROM public.posts
+    WHERE ($1 = '' OR title ILIKE '%' || $1 || '%')
+  `;
+
+  const result = await db.query(query, [term]);
+  return Number(result.rows[0].count);
 };
