@@ -13,7 +13,7 @@ export function renderPostHTML(json) {
   try {
     return DOMPurify.sanitize(generateHTML(json, editorExtensions));
   } catch {
-    return ""; // malformed JSON shouldn't crash the page
+    return ""; 
   }
 }
 

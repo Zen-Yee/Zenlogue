@@ -6,14 +6,20 @@
   gap: 8px;
 }
 
-.pagination-container > div {
+.pagination-item {
   border: 2px solid var(--color-border);
   display: flex;
   justify-content: center;
   align-items: center;
   height: 25px;
   width: 25px;
+  background-color: var(--color-surface);
 }
+
+.active {
+  background-color: var(--color-accent);
+}
+
 
 @media (max-width: 1000px) {
   .pagination-container {

@@ -8,7 +8,7 @@ import "./PostFeed.css";
 function PostFeed() {
   const navigate = useNavigate();
 
-  const { posts, hasMore } = usePosts({ limit: 10 });
+  const { posts } = usePosts({ limit: 10 });
 
   const handleClick = () => {
     navigate("/post");

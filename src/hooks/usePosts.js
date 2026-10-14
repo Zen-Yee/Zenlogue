@@ -3,10 +3,12 @@ import axios from "axios";
 
 const API_URL = import.meta.env.VITE_API_URL;
 
-function usePosts({ limit = 10, offset = 0 } = {}) {
-  const page = 1;
+function usePosts({ limit = 10, page = 1 } = {}) {
+  const offset = page - 1;
   const [posts, setPosts] = useState([]);
+  const [total, setTotal] = useState();
   const [error, setError] = useState();
+
 
   const fetchAllPost = async () => {
     try {
@@ -14,6 +16,7 @@ function usePosts({ limit = 10, offset = 0 } = {}) {
         `${API_URL}/api/posts?offset=${offset}&limit=${limit}`
       );
       setPosts(response.data.data);
+      setTotal(response.total)
     } catch (err) {
       setError(err.message);
     }
@@ -24,7 +27,7 @@ function usePosts({ limit = 10, offset = 0 } = {}) {
     fetchAllPost(offset);
   }, [page, limit]);
 
-  return { posts };
+  return { posts, total };
 }
 
 export default usePosts;
