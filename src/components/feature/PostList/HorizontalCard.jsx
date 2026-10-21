@@ -1,4 +1,4 @@
-import ReactionBar from "../ReactionBar/ReactionBar";
+import ReactionBar from "../../ui/ReactionBar/ReactionBar";
 import "./HorizontalCard.css";
 
 import { getPostExcerpt } from "../../../utils/tiptap";

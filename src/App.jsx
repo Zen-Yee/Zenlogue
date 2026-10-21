@@ -26,7 +26,7 @@ export default function App() {
               <Route path="register" element={<Register />} />
             </Route>
             <Route path="/post" element={<Postpage />} />
-            <Route path="/post/sample" element={<Displaypage />} />
+            <Route path="/post/:id" element={<Displaypage />} />
              <Route path="/error" element={<Errorpage />} />
           </Routes>
           <Footer />

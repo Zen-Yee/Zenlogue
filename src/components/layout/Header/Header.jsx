@@ -1,22 +1,36 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { useAuth } from "../../../context/AuthContext";
+import SearchBar from "../../ui/SearchBar/SearchBar";
 import "./Header.css";
 
 function Header() {
-  const [menuOpen, setMenuOpen] = useState(false);
-  const { user, logout } = useAuth();
   const navigate = useNavigate();
 
-const handleLogout = async () => {
-  await logout();
-  navigate("/");
-};
+  // Hamburger Button
+  const [menuOpen, setMenuOpen] = useState(false);
+
+  // Logout Button
+  const { user, logout } = useAuth();
+  const handleLogout = async () => {
+    await logout();
+    navigate("/");
+  };
+
+  // SearchBar
+  const [searchParams] = useSearchParams();
+  function handleSearch(q) {
+    navigate(q ? `/post?search=${encodeURIComponent(q)}` : "/post");
+  }
 
   return (
     <header>
       <h1>Zenlogue</h1>
+      <SearchBar
+        initialValue={searchParams.get("search") || ""}
+        onSearch={handleSearch}
+      />
       <div className="nav-bar">
         <div className={`nav-links ${menuOpen ? "open" : ""}`}>
           <Link to="/" onClick={() => setMenuOpen(false)}>
