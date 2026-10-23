@@ -40,6 +40,9 @@ function Header() {
           {user ? (
             <>
               <span>Hi, {user.username}</span>
+              <Link to={`/post/create`}>
+                <p>Create Post</p>
+              </Link>
               <button type="button" onClick={handleLogout}>
                 Log Out
               </button>

@@ -1,0 +1,15 @@
+.editpost-page {
+    grid-column: 1 / span 12;
+}
+
+@media (max-width: 1000px) {
+    .editpost-page {
+        grid-column: 2 / span 6;
+    }
+}
+
+@media (max-width: 575px) {
+    .editpost-page {
+        grid-column: 1 / span 4;
+    }
+}

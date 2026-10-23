@@ -7,6 +7,7 @@ function PostList({ posts, className = "" }) {
       {posts.map((post) => (
         <HorizontalCard
           key={post.post_id}
+          id={post.post_id}
           className="postfeed-cards"
           imageURL={post.cover_image_url}
           title={post.title}

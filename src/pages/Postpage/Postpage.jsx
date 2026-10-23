@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useSearchParams } from 'react-router-dom';
 import "./Postpage.css";
+
 import TwelveGrid from "../../components/layout/TwelveGrid/TwelveGrid";
 import PostList from "../../components/ui/PostList/PostList";
 import Pagination from "../../components/ui/Pagination/Pagination";
