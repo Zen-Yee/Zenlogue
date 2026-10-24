@@ -1,5 +1,6 @@
 import { createContext, useContext, useState } from "react";
 import Spinner from "../components/ui/Spinner/Spinner";
+
 const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {

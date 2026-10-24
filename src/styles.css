@@ -30,6 +30,11 @@
   --color-dark: #2d3436;
 }
 
+[data-theme="dark"] {
+
+}
+
+
 .section-title {
   grid-column: 1 / span 12;
 }
