@@ -1,6 +1,5 @@
-import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import PostList from "../../../../components/ui/PostList/PostList";
+import PostList from "../../../../components/feature/PostList/PostList";
 import TwelveGrid from "../../../../components/layout/TwelveGrid/TwelveGrid";
 import usePosts from "../../../../hooks/usePosts";
 import "./PostFeed.css";

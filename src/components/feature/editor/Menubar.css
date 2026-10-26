@@ -3,7 +3,6 @@
   flex-wrap: wrap;
   align-items: center;
   gap: 4px;
-  padding: 8px;
   background: var(--tertiary);
   width: 100%;
 }

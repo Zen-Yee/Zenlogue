@@ -3,7 +3,7 @@ import { useSearchParams } from 'react-router-dom';
 import "./Postpage.css";
 
 import TwelveGrid from "../../components/layout/TwelveGrid/TwelveGrid";
-import PostList from "../../components/ui/PostList/PostList";
+import PostList from "../../components/feature/PostList/PostList";
 import Pagination from "../../components/ui/Pagination/Pagination";
 import usePosts from "../../hooks/usePosts";
 

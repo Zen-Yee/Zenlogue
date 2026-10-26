@@ -10,7 +10,7 @@ export const AuthProvider = ({ children }) => {
   const logout = async () => {
     try {
       setLoading(true);
-      const res = await fetch("http://localhost:3000/auth/logout", {
+      const res = await fetch("http://localhost:3000/api/auth/logout", {
         method: "POST",
         credentials: "include",
       });

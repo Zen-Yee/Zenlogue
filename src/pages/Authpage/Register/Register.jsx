@@ -47,7 +47,7 @@ function Register() {
     }
 
     setLoading(true);
-    const res = await fetch("http://localhost:3000/auth/signup", {
+    const res = await fetch("http://localhost:3000/api/auth/signup", {
       method: "POST",
       credentials: "include", // ← this is required for cookies to be set
       headers: { "Content-Type": "application/json" },

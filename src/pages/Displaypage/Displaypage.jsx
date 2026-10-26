@@ -1,19 +1,15 @@
 import { useState, useMemo } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams, Link } from "react-router-dom";
 import { PencilLine, Trash } from "lucide-react";
 import axios from "axios";
 
-import { generateHTML } from "@tiptap/html";
-import Document from "@tiptap/extension-document";
-import Paragraph from "@tiptap/extension-paragraph";
-import Text from "@tiptap/extension-text";
-import Bold from "@tiptap/extension-bold";
+import { renderPostHTML } from "../../utils/tiptap";
 
 import TwelveGrid from "../../components/layout/TwelveGrid/TwelveGrid";
 // import ReactionBar from "../../components/ui/ReactionBar/ReactionBar";
 // import CommentsList from "../../components/features/Comments/CommentsList";
 
-import { useAuth } from "../../../context/AuthContext";
+import { useAuth } from "../../context/AuthContext";
 import usePost from "../../hooks/usePost";
 
 import "./Displaypage.css";
@@ -29,8 +25,11 @@ function Displaypage() {
 
   const postContent = useMemo(() => {
     if (!post?.content) return "";
-    return generateHTML(post.content, [Document, Paragraph, Text, Bold]);
+    return renderPostHTML(post?.content);
   }, [post?.content]);
+
+  // console.log(`Author: ${post.author_id}`);
+  // console.log(post.author_id);
 
   const deletePost = async () => {
     try {
@@ -39,37 +38,44 @@ function Displaypage() {
     } catch (err) {
       setError(err.message);
     }
-  }
+  };
 
   function handleDelete() {
     deletePost();
   }
+
+  // && user.user_id === post.author_id &&
 
   return (
     <div className="display-page">
       <TwelveGrid>
         <div className="post-container">
           <div className="post-header">
-            <h2>{post?.title}</h2>
-            <h3>{post?.author_name}</h3>
-            <p>{post?.created_at}</p>
+            <div className="post-information">
+              <h2>{post?.title}</h2>
+              <h3>{post?.author_id}</h3>
+              <p>{post?.created_at}</p>
+            </div>
+
+            {user && post && (
+              <div className="post-control">
+                <Link className="post-control-item" to={`/post/${id}/edit`}>
+                  <PencilLine />
+                </Link>
+                <button className="post-control-item" onClick={handleDelete}>
+                  <Trash />
+                </button>
+              </div>
+            )}
           </div>
 
-          {user && post && user.user_id === post.user_id && (
-            <div className="post-control">
-              <Link to={`/post/${id}/edit`}>
-                <PencilLine />
-              </Link>
-              <button onClick={handleDelete}><Trash /></button>
-            </div>
-          )}
           <div
             className="post-content"
             dangerouslySetInnerHTML={{ __html: postContent }}
           />
         </div>
         {/* <ReactionBar
-          className="post-rection"
+          className="post-reaction"
           LikeCount={post?.LikeCount}
           DislikeCount={post?.DislikeCount}
           CommentCount={post?.CommentCount} /> */}

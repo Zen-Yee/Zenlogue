@@ -33,22 +33,23 @@ function Header() {
       />
       <div className="nav-bar">
         <div className={`nav-links ${menuOpen ? "open" : ""}`}>
-          <Link to="/" onClick={() => setMenuOpen(false)}>
+          {user && <span className="nav-items">Hi, {user.username}</span>}
+
+          <Link className="nav-items" to="/" onClick={() => setMenuOpen(false)}>
             Home
           </Link>
 
           {user ? (
             <>
-              <span>Hi, {user.username}</span>
-              <Link to={`/post/create`}>
+              <Link className="nav-items" to={`/post/create`}>
                 <p>Create Post</p>
               </Link>
-              <button type="button" onClick={handleLogout}>
+              <button className="nav-items" type="button" onClick={handleLogout}>
                 Log Out
               </button>
             </>
           ) : (
-            <Link to="/auth" onClick={() => setMenuOpen(false)}>
+            <Link  className="nav-items" to="/auth" onClick={() => setMenuOpen(false)}>
               Sign In
             </Link>
           )}

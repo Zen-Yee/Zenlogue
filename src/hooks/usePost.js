@@ -11,7 +11,7 @@ function usePost(id) {
     const fetchPost = async () => {
       try {
         const response = await axios.get(`${API_URL}/api/posts/${id}`);
-        setPost(response.data.data);
+        setPost(response.data.postData);
         setError(null);
       } catch (err) {
         setError(err.message);

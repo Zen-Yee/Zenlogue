@@ -4,7 +4,7 @@ import "./HorizontalCard.css";
 import { Link } from "react-router-dom";
 
 import { getPostExcerpt } from "../../../utils/tiptap";
-import { formatDate } from "../../../utils/date"
+import { formatDate } from "../../../utils/date";
 
 function HorizontalCard({
   id,
@@ -31,7 +31,9 @@ function HorizontalCard({
         <div className="card-content">
           {/* <p>{renderPostHTML(content)}</p> */}
           <p dangerouslySetInnerHTML={{ __html: getPostExcerpt(content) }}></p>
-          <a>Read more</a>
+          <Link to={`/post/${id}`}>
+            <p>Read More</p>
+          </Link>
           <ReactionBar
             className=""
             LikeCount={LikeCount}
