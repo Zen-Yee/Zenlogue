@@ -1,0 +1,35 @@
+.menu-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 4px;
+  background: var(--tertiary);
+  width: 100%;
+}
+
+.menu-btn {
+  padding: 4px 10px;
+  border: 1px solid transparent;
+  background: transparent;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  color: #333;
+  transition: background 0.15s, border-color 0.15s;
+}
+
+.menu-btn:hover {
+  background: var(--secondary);
+  border-color: var(--text-primary);
+}
+
+.menu-btn.active {
+  background: #000;
+  color: #fff;
+  border-color: #000;
+}
+
+.menu-btn:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}

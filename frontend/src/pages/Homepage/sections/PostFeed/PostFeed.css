@@ -1,0 +1,32 @@
+.postfeed-section {
+  height: auto;
+  padding-bottom: 10%;
+}
+
+.post-list {
+  grid-column: 1 / span 12;
+}
+
+.postfeed-button {
+  grid-column: 1 / span 12;
+}
+
+@media (max-width: 1000px) {
+  .post-list {
+    grid-column: 2 / span 6;
+  }
+
+  .postfeed-button {
+    grid-column: 2 / span 6;
+  }
+}
+
+@media (max-width: 575px) {
+  .post-list {
+    grid-column: 1 / span 4;
+  }
+
+  .postfeed-button {
+    grid-column: 2 / span 2;
+  }
+}

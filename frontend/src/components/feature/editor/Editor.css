@@ -1,0 +1,41 @@
+.editor-container {
+  margin: 5%;
+  background-color: var( --color-background);
+  grid-column: 1 / span 12;
+  padding: 2%;
+  display: flex;
+  flex-direction: column;
+  gap:10px;
+}
+
+.edit-space {
+  width: 100%;
+  height:100%;
+  overflow-y: auto;
+   min-height:100vh;
+}
+
+.edit-space strong {
+  font-weight: bold; /* force bold to show */
+}
+
+.edit-space ul,
+.edit-space ol {
+  padding-left: 24px;
+}
+
+em {
+  font-style: italic !important;
+}
+
+@media (max-width: 1000px) {
+    .editor-container {
+        grid-column: 2 / span 6;
+    }
+}
+
+@media (max-width: 575px) {
+    .editor-container {
+        grid-column: 1 / span 4;
+    }
+}

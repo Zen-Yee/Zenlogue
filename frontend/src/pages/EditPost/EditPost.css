@@ -1,0 +1,11 @@
+.editpost-page {
+min-height: calc(100vh - 40px - 100px);
+}
+
+@media (max-width: 1000px) {
+
+}
+
+@media (max-width: 575px) {
+
+}

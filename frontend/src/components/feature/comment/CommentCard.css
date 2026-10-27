@@ -1,0 +1,17 @@
+.comment-card {
+  background-color: var(--surface);
+  margin-bottom: 10px;
+  border-radius: 10px;
+  padding: 10px;
+}
+
+.comment-author {
+  display: flex;
+  height: 35px;
+  align-items: center; /* vertical alignment */
+}
+
+.comment-author > img {
+  width: 30px;
+  height: 30px;
+}

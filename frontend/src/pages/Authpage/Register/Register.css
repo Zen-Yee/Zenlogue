@@ -1,0 +1,6 @@
+.warning {
+  color: red;
+  text-shadow: 1px 1px 2px rgb(207, 207, 207);
+  padding-bottom: 3%;
+  text-align: center;
+}

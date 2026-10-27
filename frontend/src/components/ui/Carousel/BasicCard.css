@@ -1,0 +1,28 @@
+.basic-card {
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.basic-card > .card-image {
+  flex: 1 1 auto;
+  min-height: 0;
+  width: 100%;
+  overflow: hidden;
+}
+
+.basic-card > .card-image > img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.basic-card > .card-text {
+  flex: 0 0 auto; /* text takes only the space it needs */
+  padding: 0.5rem; /* adjust as needed */
+  background-color: white;
+  height: 15vh;
+}

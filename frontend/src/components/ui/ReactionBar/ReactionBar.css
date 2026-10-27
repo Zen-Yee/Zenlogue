@@ -1,0 +1,12 @@
+.reaction-bar {
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  gap: 2%;
+}
+
+.reaction-bar button {
+  width: 20px;
+  height: 20px;
+  background-color: transparent;
+}

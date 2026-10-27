@@ -1,0 +1,52 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+}
+
+:root {
+  /* Brand */
+  --color-primary: #cdf0ea; /*primary buttons, active tabs, selected states, links or hightlights*/
+  --color-accent: #f6c6ea; /*hover states, badges, tags, notification dots, and decorative highlights*/
+
+  /* Surfaces */
+  --color-background: #f9f9f9; /*the colour of the page itself, behind everything*/
+  --color-surface: #ffffff; /*anything that sits on top of the page: cards, modals, dropdowns, inputs, the navbar*/
+  --color-border: #e5e5e5; /*thin dividing lines, outlines around cards and inputs, and separators between list items*/
+
+  /* Text */
+  --color-text: #2d3436; /*main text, such as headings, body copy, and icons*/
+  --color-text-muted: #636e72; /*econdary text, such as timestamps, captions, placeholders, helper text, and labels that shouldn’t compete with the main content*/
+}
+
+:root[data-theme="dark"] {
+  /* Brand */
+  --color-primary: #cdf0ea;
+  --color-accent: #f6c6ea;
+
+  /* Surfaces */
+  --color-background: #1a1d1f;
+  --color-surface: #25292c;
+  --color-border: #3a4044;
+
+  /* Text */
+  --color-text: #f1f3f4;
+  --color-text-muted: #9aa5ab;
+}
+
+
+.section-title {
+  grid-column: 1 / span 12;
+}
+
+@media (max-width: 1000px) {
+  .section-title {
+    grid-column: 2 / span 6;
+  }
+}
+
+@media (max-width: 575px) {
+  .section-title {
+    grid-column: 1 / span 4;
+    text-align: center;
+  }
+}
