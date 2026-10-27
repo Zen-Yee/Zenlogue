@@ -1,12 +1,17 @@
+import "./PostFeed.css";
+
+// Library
 import { useNavigate } from "react-router-dom";
+
+// Components
 import PostList from "../../../../components/feature/PostList/PostList";
 import TwelveGrid from "../../../../components/layout/TwelveGrid/TwelveGrid";
+
+// Hooks
 import usePosts from "../../../../hooks/usePosts";
-import "./PostFeed.css";
 
 function PostFeed() {
   const navigate = useNavigate();
-
   const { posts } = usePosts({ limit: 10 });
 
   const handleClick = () => {

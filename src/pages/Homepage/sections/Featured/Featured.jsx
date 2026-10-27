@@ -1,5 +1,6 @@
-import React from "react";
 import "./Featured.css";
+
+// Components
 import TwelveGrid from "../../../../components/layout/TwelveGrid/TwelveGrid";
 import Carousel from "../../../../components/ui/Carousel/Carousel";
 import BasicCard from "../../../../components/ui/Carousel/BasicCard";

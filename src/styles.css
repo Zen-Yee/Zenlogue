@@ -5,17 +5,17 @@
 
 :root {
   /* Brand */
-  --color-primary: #cdf0ea;
-  --color-accent: #f6c6ea;
+  --color-primary: #cdf0ea; /*primary buttons, active tabs, selected states, links or hightlights*/
+  --color-accent: #f6c6ea; /*hover states, badges, tags, notification dots, and decorative highlights*/
 
   /* Surfaces */
-  --color-background: #f9f9f9;
-  --color-surface: #ffffff;
-  --color-border: #e5e5e5;
+  --color-background: #f9f9f9; /*the colour of the page itself, behind everything*/
+  --color-surface: #ffffff; /*anything that sits on top of the page: cards, modals, dropdowns, inputs, the navbar*/
+  --color-border: #e5e5e5; /*thin dividing lines, outlines around cards and inputs, and separators between list items*/
 
   /* Text */
-  --color-text: #2d3436;
-  --color-text-muted: #636e72;
+  --color-text: #2d3436; /*main text, such as headings, body copy, and icons*/
+  --color-text-muted: #636e72; /*econdary text, such as timestamps, captions, placeholders, helper text, and labels that shouldn’t compete with the main content*/
 }
 
 :root[data-theme="dark"] {

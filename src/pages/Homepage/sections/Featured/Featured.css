@@ -6,6 +6,10 @@
   padding-bottom: 10%;
 }
 
+.postfeed-button{
+  background-color: var(--color-primary);
+}
+
 @media (max-width: 1000px) {
   .featured-carousel {
     grid-column: 2 / span 6;

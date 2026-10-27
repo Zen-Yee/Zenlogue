@@ -1,6 +1,4 @@
 import { NavLink, Outlet } from "react-router-dom";
-
-
 import "./Authpage.css";
 
 function Authpage() {

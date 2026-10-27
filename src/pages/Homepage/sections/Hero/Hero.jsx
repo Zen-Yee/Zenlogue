@@ -1,5 +1,6 @@
-import React from "react";
 import "./Hero.css";
+
+// Components
 import TwelveGrid from "../../../../components/layout/TwelveGrid/TwelveGrid";
 
 function Hero() {

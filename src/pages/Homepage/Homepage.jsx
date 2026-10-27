@@ -1,6 +1,6 @@
-import React from "react";
 import "./Homepage.css";
 
+// Components
 import Hero from "./sections/Hero/Hero";
 import Featured from "./sections/Featured/Featured";
 import PostFeed from "./sections/PostFeed/PostFeed";

@@ -1,9 +1,16 @@
+import "./Header.css";
+
+// Library
 import { useState } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { Link } from "react-router-dom";
+
+// Context
 import { useAuth } from "../../../context/AuthContext";
+
+// Components
 import SearchBar from "../../ui/SearchBar/SearchBar";
-import "./Header.css";
+
 
 function Header() {
   const navigate = useNavigate();

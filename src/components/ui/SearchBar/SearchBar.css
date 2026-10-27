@@ -22,8 +22,8 @@
 
 .search-bar input:focus {
   outline: none;
-  border: none; /* Optional: removes standard border entirely */
-  box-shadow: none; /* Removes glow effect in Chrome/Safari/Tailwind */
+  border: none; 
+  box-shadow: none;
 }
 
 .search-icon {
