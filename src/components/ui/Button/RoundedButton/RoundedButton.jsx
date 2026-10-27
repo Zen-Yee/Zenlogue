@@ -1,9 +1,9 @@
 import React from "react";
 import "./RoundedButton.css";
 
-function RoundedButton(props) {
+function RoundedButton(className="", props) {
   return (
-    <button type={props.type} className="round-button">
+    <button type={props.type} className={`${className} round-button`}>
       {props.text}
     </button>
   );

@@ -4,34 +4,33 @@
 }
 
 :root {
-  /* Brand Colors */
+  /* Brand */
   --color-primary: #cdf0ea;
-  --color-secondary: #f6c6ea;
-  --color-accent: #faf4b7;
+  --color-accent: #f6c6ea;
 
-  /* Backgrounds */
+  /* Surfaces */
   --color-background: #f9f9f9;
   --color-surface: #ffffff;
+  --color-border: #e5e5e5;
 
   /* Text */
   --color-text: #2d3436;
   --color-text-muted: #636e72;
-  --color-text-light: #ffffff;
-
-  /* Borders */
-  --color-border: #e5e5e5;
-
-  /* States */
-  --color-success: #cdf0ea;
-  --color-warning: #faf4b7;
-  --color-error: #f6c6ea;
-
-  /* Dark */
-  --color-dark: #2d3436;
 }
 
-[data-theme="dark"] {
+:root[data-theme="dark"] {
+  /* Brand */
+  --color-primary: #cdf0ea;
+  --color-accent: #f6c6ea;
 
+  /* Surfaces */
+  --color-background: #1a1d1f;
+  --color-surface: #25292c;
+  --color-border: #3a4044;
+
+  /* Text */
+  --color-text: #f1f3f4;
+  --color-text-muted: #9aa5ab;
 }
 
 

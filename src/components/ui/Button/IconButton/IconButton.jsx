@@ -1,8 +1,6 @@
-import "./IconButton.css";
-
-function IconButton({ icon: Icon, size = 15, color = "#000000", ...props }) {
+function IconButton({ className = "", icon: Icon, size = 15, color = "#000000", ...props }) {
   return (
-    <button className="icon-button" {...props}>
+    <button className={`${className} icon-button`} {...props}>
       <Icon size={size} color={color} />
     </button>
   );

@@ -4,7 +4,7 @@ import "./Postpage.css";
 
 import TwelveGrid from "../../components/layout/TwelveGrid/TwelveGrid";
 import PostList from "../../components/feature/PostList/PostList";
-import Pagination from "../../components/ui/Pagination/Pagination";
+import Pagination from "../../components/feature/PostList/Pagination";
 import usePosts from "../../hooks/usePosts";
 
 function Postpage() {

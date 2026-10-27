@@ -2,7 +2,7 @@ import React from "react";
 import "./Featured.css";
 import TwelveGrid from "../../../../components/layout/TwelveGrid/TwelveGrid";
 import Carousel from "../../../../components/ui/Carousel/Carousel";
-import BasicCard from "../../../../components/ui/BasicCard/BasicCard";
+import BasicCard from "../../../../components/ui/Carousel/BasicCard";
 
 function Featured() {
   return (
