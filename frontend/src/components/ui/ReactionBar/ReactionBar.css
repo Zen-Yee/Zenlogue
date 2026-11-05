@@ -1,12 +1,35 @@
 .reaction-bar {
   width: 100%;
   display: flex;
-  justify-content: flex-start;
-  gap: 2%;
+  justify-content: flex-end;
+  gap: 5%;
 }
 
-.reaction-bar button {
-  width: 20px;
-  height: 20px;
+.reaction-bar > div {
+  width: 30px;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap:10px;
+}
+
+.reaction-bar > div > p {
+  width: 30px;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.reaction-bar>div button {
   background-color: transparent;
+  border: none;
+  border-radius: 5px;
+  padding: 10px;
+}
+
+.reaction-bar>div button:hover {
+  background-color: var(--color-accent)
 }

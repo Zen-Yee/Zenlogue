@@ -7,10 +7,12 @@ import TwelveGrid from "../../components/layout/TwelveGrid/TwelveGrid";
 import usePost from "../../hooks/usePost";
 
 function EditPost() {
-  const { id } = useParams()
-    const isEdit = Boolean(id);
+  const { id } = useParams();
+  const isEdit = Boolean(id);
   const { post } = usePost(id);
 
+  if (isEdit && !post) return <p>Loading...</p>;
+  
   return (
     <div className="editpost-page">
       <TwelveGrid>

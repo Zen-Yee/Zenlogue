@@ -62,6 +62,9 @@ export const createPost = async (req, res, next) => {
 export const updatePost = async (req, res, next) => {
   try {
     const postId = req.params.id;
+
+    console.log(postId);
+    
     const { title, content } = req.body;
     const updatedPost = await postService.updatePost(postId, title, content, req.user.userId);
 

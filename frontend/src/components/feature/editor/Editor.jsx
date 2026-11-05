@@ -1,16 +1,19 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { useEditor, EditorContent } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
 import Menubar from "./Menubar";
 import "./Editor.css";
 
+const API_URL = import.meta.env.VITE_API_URL;
 
 function Editor({ post, isEdit, postId }) {
+  const navigate = useNavigate();
   const [title, setTitle] = useState(post?.title ?? "");
 
   const editor = useEditor({
     extensions: [StarterKit],
-    content: post?.content ?? "",   // JSON for edit, empty for create
+    content: post?.content ?? "", // JSON for edit, empty for create
   });
 
   if (!editor) return null;
@@ -18,16 +21,22 @@ function Editor({ post, isEdit, postId }) {
   const handleSubmit = async () => {
     const content = editor.getJSON();
 
-    const res = await fetch(isEdit ? `/api/posts/${postId}` : "/api/posts/create", {
-      method: isEdit ? "PATCH" : "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ title, content }),
-    });
+    const res = await fetch(
+      isEdit ? `${API_URL}/api/posts/${postId}` : `${API_URL}/api/posts/create`,
+      {
+        method: isEdit ? "PATCH" : "POST",
+        headers: { "Content-Type": "application/json" },
+        credentials: "include",
+        body: JSON.stringify({ title, content }),
+      },
+    );
 
     if (!res.ok) {
       console.error("Failed to save post");
       return;
     }
+
+    navigate(`/post/${postId}`);
   };
 
   return (

@@ -11,12 +11,34 @@ function ReactionBar({
 }) {
   return (
     <div className={`reaction-bar ${className}`}>
-      <IconButton className="reaction-button" icon={ThumbsUp} size="20" color="var(--color-text)"/>
-      {LikeCount}
-      <IconButton className="reaction-button" icon={ThumbsDown} size="20" color="var(--color-text)" />
-      {DislikeCount}
-      <IconButton className="reaction-button" icon={MessageCircle} size="20" color="var(--color-text)" />
-      {CommentCount}
+      <div>
+        <IconButton
+          className="reaction-button"
+          icon={ThumbsUp}
+          size="20"
+          color="var(--color-text)"
+        />
+        <p>{LikeCount}</p>
+      </div>
+
+      <div>
+        <IconButton
+          className="reaction-button"
+          icon={ThumbsDown}
+          size="20"
+          color="var(--color-text)"
+        />
+        <p>{DislikeCount}</p>
+      </div>
+      <div>
+        <IconButton
+          className="reaction-button"
+          icon={MessageCircle}
+          size="20"
+          color="var(--color-text)"
+        />
+        <p>{CommentCount}</p>
+      </div>
     </div>
   );
 }

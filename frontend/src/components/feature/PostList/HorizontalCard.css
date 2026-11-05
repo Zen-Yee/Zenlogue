@@ -23,6 +23,17 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  gap: 10%;
+}
+
+.card-text a{
+  text-decoration: none;
+    color: var(--color-text);
+  font-weight: bold;
+}
+
+.card-text a:hover{
+    color: var(--color-text-muted);
 }
 
 .horizontal-card .card-title {
@@ -42,10 +53,6 @@
 
 .horizontal-card .card-content p {
   flex-grow: 1;
-}
-
-. .horizontal-card .card-content > a {
-  text-align: right;
 }
 
 @media (max-width: 767px) {
