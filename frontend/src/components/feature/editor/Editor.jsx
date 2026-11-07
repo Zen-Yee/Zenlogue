@@ -19,6 +19,7 @@ function Editor({ post, isEdit, postId }) {
   if (!editor) return null;
 
   const handleSubmit = async () => {
+    // placeholder for loading
     const content = editor.getJSON();
 
     const res = await fetch(
@@ -36,6 +37,14 @@ function Editor({ post, isEdit, postId }) {
       return;
     }
 
+    const data = await res.json();
+    const targetId = isEdit ? postId : data.postData.post_id;
+
+    navigate(`/post/${targetId}`);
+  };
+
+  const handleCancel = () => {
+    // placeholder for Loading & pop up
     navigate(`/post/${postId}`);
   };
 
@@ -51,6 +60,7 @@ function Editor({ post, isEdit, postId }) {
       </label>
       <Menubar editor={editor} />
       <EditorContent className="edit-space" editor={editor} />
+      <button onClick={handleCancel}>Cancel</button>
       <button onClick={handleSubmit}>Submit</button>
     </div>
   );

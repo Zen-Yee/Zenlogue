@@ -9,10 +9,10 @@ import usePost from "../../hooks/usePost";
 function EditPost() {
   const { id } = useParams();
   const isEdit = Boolean(id);
-  const { post } = usePost(id);
+  const { post } = id ? usePost(id):"";
 
   if (isEdit && !post) return <p>Loading...</p>;
-  
+  console.log(isEdit);
   return (
     <div className="editpost-page">
       <TwelveGrid>

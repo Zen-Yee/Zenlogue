@@ -28,19 +28,20 @@ function Displaypage() {
     return renderPostHTML(post?.content);
   }, [post?.content]);
 
-  // console.log(`Author: ${post.author_id}`);
-  // console.log(post.author_id);
-
   const deletePost = async () => {
     try {
-      const response = await axios.delete(`${API_URL}/api/posts/${id}`);
+      const response = await axios.delete(`${API_URL}/api/posts/${id}`, {
+        withCredentials: true,
+      });
       navigate("/post");
     } catch (err) {
+      console.error(err.response?.data || err.message);
       setError(err.message);
     }
   };
 
   function handleDelete() {
+    // placeholder for loading & pop up
     deletePost();
   }
 
@@ -68,6 +69,8 @@ function Displaypage() {
               </div>
             )}
           </div>
+
+          {error && <p className="error">{error}</p>}
 
           <div
             className="post-content"

@@ -6,7 +6,7 @@ export const getPosts = async (limit, offset, search = "") => {
   const query = `
     SELECT * FROM public.posts
     WHERE ($1 = '' OR title ILIKE '%' || $1 || '%')
-    ORDER BY post_id
+    ORDER BY created_at DESC
     LIMIT $2
     OFFSET $3
   `;
