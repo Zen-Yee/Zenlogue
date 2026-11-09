@@ -16,8 +16,8 @@ app.use(express.json()); //Parse incoming request with JSON body
 app.use(express.urlencoded({ extended: true })); // Parses URL-encoded form data (from HTML forms).
 app.use(cookieParser());
 app.use(cors({
-  origin: "http://localhost:5173",
-  credentials: true, // only if using cookies/auth
+  origin: process.env.CLIENT_URL,
+  credentials: true,
 }));
 
 // Mounting routes
