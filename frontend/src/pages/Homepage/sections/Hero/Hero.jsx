@@ -7,7 +7,7 @@ function Hero() {
   return (
     <div className="hero-section">
       <TwelveGrid>
-        <div>
+        <div  className="full-width">
           <h1>Fragments of life</h1>
           <p>
             A collection of thoughts, experiences, lessons, and moments worth

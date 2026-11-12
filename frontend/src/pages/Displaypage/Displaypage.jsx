@@ -45,12 +45,10 @@ function Displaypage() {
     deletePost();
   }
 
-  // && user.user_id === post.author_id &&
-
   return (
-    <div className="display-page">
+    <div className="full-page display-page">
       <TwelveGrid>
-        <div className="post-container">
+        <div className="post-container full-width">
           <div className="post-header">
             <div className="post-information">
               <h2>{post?.title}</h2>
@@ -78,11 +76,11 @@ function Displaypage() {
           />
         </div>
         {/* <ReactionBar
-          className="post-reaction"
+          className="post-reaction  full-width"
           LikeCount={post?.LikeCount}
           DislikeCount={post?.DislikeCount}
           CommentCount={post?.CommentCount} /> */}
-        {/* <CommentsList className="post-comments" /> */}
+        {/* <CommentsList className="post-comments  full-width" /> */}
       </TwelveGrid>
     </div>
   );

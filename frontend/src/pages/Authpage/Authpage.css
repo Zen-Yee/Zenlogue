@@ -1,5 +1,4 @@
 .auth-page {
-  height: calc(100vh - 40px - 100px);
   display: flex;
   flex-direction: row;
   align-items: stretch;

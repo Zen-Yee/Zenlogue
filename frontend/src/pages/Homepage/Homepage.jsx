@@ -7,7 +7,7 @@ import PostFeed from "./sections/PostFeed/PostFeed";
 
 function Homepage() {
   return (
-    <div className="home-page">
+    <div className="full-page">
       <Hero />
       <Featured />
       <PostFeed />

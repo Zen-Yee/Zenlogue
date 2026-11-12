@@ -12,7 +12,7 @@ function SignIn() {
     password: "",
   });
 
-    const [warning, setWarning] = useState("");
+  const [warning, setWarning] = useState("");
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
   const { setUser } = useAuth();
@@ -48,7 +48,7 @@ function SignIn() {
       if (res.status === 400 || res.status === 409) {
         setWarning(data.message); // show on form
         setTimeout(() => {
-        setLoading(false);
+          setLoading(false);
         }, 2000);
       } else {
         navigate("/error", {
@@ -72,38 +72,36 @@ function SignIn() {
 
   return (
     <>
-     {loading ? (
-        <div>
-          <Spinner />
-        </div>
+      {loading ? (
+        <Spinner className="spinner-container" />
       ) : (
-    <AuthForm
-      title="Welcome Back!"
-      footer={
-        <p>
-          Don't have an account? <Link to="/auth/register">Register</Link>
-        </p>
-      }
-      onSubmit={handleSubmit}
-    >
-      <InputText
-        label="Username :"
-        name="username"
-        onChange={handleChange}
-        value={form.username}
-      />
-      <InputText
-        label="Password :"
-        name="password"
-        type="password"
-        onChange={handleChange}
-        value={form.password}
-      />
+        <AuthForm
+          title="Welcome Back!"
+          footer={
+            <p>
+              Don't have an account? <Link to="/auth/register">Register</Link>
+            </p>
+          }
+          onSubmit={handleSubmit}
+        >
+          <InputText
+            label="Username :"
+            name="username"
+            onChange={handleChange}
+            value={form.username}
+          />
+          <InputText
+            label="Password :"
+            name="password"
+            type="password"
+            onChange={handleChange}
+            value={form.password}
+          />
 
-       <p className="warning">{warning}</p>
+          <p className="warning">{warning}</p>
 
-    </AuthForm>
-  )}</>
+        </AuthForm>
+      )}</>
   );
 }
 

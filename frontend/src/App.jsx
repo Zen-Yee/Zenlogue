@@ -1,6 +1,7 @@
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import "./styles.css";
 import { AuthProvider } from "./context/AuthContext";
+
 import Header from "./components/layout/Header/Header";
 import Footer from "./components/layout/Footer/Footer";
 
@@ -21,17 +22,20 @@ export default function App() {
           <Header />
           <Routes>
             <Route path="/" element={<Homepage />} />
+
             <Route path="/auth" element={<Authpage />}>
               <Route index element={<Navigate to="signin" replace />} />
               <Route path="signin" element={<SignIn />} />
               <Route path="register" element={<Register />} />
             </Route>
+
             <Route path="/post">
               <Route index element={<Postpage />} />
               <Route path="create" element={<Editorpage />} />
               <Route path=":id" element={<Displaypage />} />
               <Route path=":id/edit" element={<Editorpage />} />
             </Route>
+
             <Route path="/error" element={<Errorpage />} />
           </Routes>
           <Footer />

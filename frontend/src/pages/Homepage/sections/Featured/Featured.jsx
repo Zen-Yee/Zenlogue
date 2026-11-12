@@ -10,7 +10,7 @@ function Featured() {
     <div className="featured-section">
       <TwelveGrid>
         <h2 className="section-title">Featured</h2>
-        <Carousel className="featured-carousel">
+        <Carousel className="full-width">
           <BasicCard
             title="Learning to Slow Down"
             content="A reflection on stepping away from the constant pressure to be productive, making space for the things that matter, and learning that progress doesn’t always have to be measured by how much you accomplish."

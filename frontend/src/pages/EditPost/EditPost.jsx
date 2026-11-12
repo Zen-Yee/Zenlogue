@@ -14,7 +14,7 @@ function EditPost() {
   if (isEdit && !post) return <p>Loading...</p>;
   console.log(isEdit);
   return (
-    <div className="editpost-page">
+    <div className="full-page">
       <TwelveGrid>
         <Editor key={id ?? "new"} post={post} isEdit={isEdit} postId={id} />
       </TwelveGrid>

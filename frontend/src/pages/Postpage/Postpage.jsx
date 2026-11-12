@@ -21,9 +21,9 @@ function PostResults({ search }) {
   const pagesCount = Math.ceil(total / limit);
 
   return (
-    <div className="post-page">
+    <div className="post-page full-page ">
       <TwelveGrid>
-        <PostList posts={posts} className="post-list" />
+        <PostList posts={posts} className="full-width" />
         <Pagination
           currentPage={page}
           totalPages={pagesCount}

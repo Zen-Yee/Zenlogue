@@ -4,3 +4,9 @@
   padding-bottom: 3%;
   text-align: center;
 }
+
+.spinner-container{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}

@@ -86,9 +86,7 @@ function Register() {
   return (
     <div>
       {loading ? (
-        <div>
-          <Spinner />
-        </div>
+          <Spinner className="spinner-container"/>
       ) : (
         <AuthForm
           title="Join Us!"

@@ -5,11 +5,13 @@ const API_URL = import.meta.env.VITE_API_URL;
 
 function usePosts({ page = 1, limit = 10, search = "" } = {}) {
   const [posts, setPosts] = useState([]);
+  const [loading, setLoading] = useState(true);
   const [total, setTotal] = useState(0);
   const [error, setError] = useState(null);
 
   useEffect(() => {
     const fetchAllPost = async () => {
+      setLoading(true);
       try {
         const response = await axios.get(`${API_URL}/api/posts`, {
           params: { offset: (page - 1) * limit, limit, search },
@@ -19,13 +21,15 @@ function usePosts({ page = 1, limit = 10, search = "" } = {}) {
         setError(null);
       } catch (err) {
         setError(err.message);
+      } finally {
+        setLoading(false);
       }
     };
 
     fetchAllPost();
   }, [page, limit, search]);
 
-  return { posts, total, error };
+  return { posts, total, error, loading };
 }
 
 export default usePosts;

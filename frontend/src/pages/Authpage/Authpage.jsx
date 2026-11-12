@@ -3,7 +3,7 @@ import "./Authpage.css";
 
 function Authpage() {
   return (
-    <div className="auth-page">
+    <div className="full-page auth-page">
       <div className="auth-background">
         <img src="https://picsum.photos/500" alt="Random placeholder" />
       </div>
