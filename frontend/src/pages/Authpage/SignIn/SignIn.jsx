@@ -6,6 +6,9 @@ import InputText from "../../../components/ui/InputText/InputText";
 import Spinner from "../../../components/ui/Spinner/Spinner";
 import AuthForm from "../AuthForm/AuthForm";
 
+
+const API_URL = import.meta.env.VITE_API_URL;
+
 function SignIn() {
   const [form, setForm] = useState({
     username: "",
@@ -35,7 +38,7 @@ function SignIn() {
 
 
     setLoading(true);
-    const res = await fetch("http://localhost:3000/api/auth/login", {
+    const res = await fetch(`${API_URL}/api/auth/login`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       credentials: "include",

@@ -1,5 +1,3 @@
-import "./Homepage.css";
-
 // Components
 import Hero from "./sections/Hero/Hero";
 import Featured from "./sections/Featured/Featured";

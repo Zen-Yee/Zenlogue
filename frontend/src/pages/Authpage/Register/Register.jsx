@@ -8,6 +8,8 @@ import Spinner from "../../../components/ui/Spinner/Spinner";
 import AuthForm from "../AuthForm/AuthForm";
 import "./Register.css";
 
+const API_URL = import.meta.env.VITE_API_URL;
+
 function Register() {
   const [form, setForm] = useState({
     username: "",
@@ -47,7 +49,7 @@ function Register() {
     }
 
     setLoading(true);
-    const res = await fetch("http://localhost:3000/api/auth/signup", {
+    const res = await fetch(`${API_URL}/api/auth/signup`, {
       method: "POST",
       credentials: "include", // ← this is required for cookies to be set
       headers: { "Content-Type": "application/json" },
