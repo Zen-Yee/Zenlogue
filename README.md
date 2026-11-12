@@ -2,7 +2,7 @@
 
 A full-stack blog application built with React, Express, and PostgreSQL. This project is my primary learning vehicle for full-stack and AI-integrated web development.
 
-🔗 **Live site:** To be updated
+🔗 **Live site:** [Zenlogue](https://zenlogue.vercel.app/)
 
 ## Tech Stack
 
