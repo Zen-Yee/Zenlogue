@@ -3,23 +3,41 @@ import bcrypt from "bcrypt";
 
 export const createUser = async (username, email, password) => {
 
-  const existingUser = await findByEmail(email);
-  if (existingUser) {
-    const err = new Error("Email already exists");
-    err.status = 409;
+  const passwordHash = await bcrypt.hash(password, 10);
+
+  const query = `
+  INSERT INTO users ( email, username, password_hash, display_name ) 
+  VALUES ($1, $2, $3, $1) 
+  RETURNING user_id, email, username, display_name, avatar_url, role, status
+  `;
+
+  try {
+    const result = await db.query(query, [
+      username,
+      email,
+      passwordHash,
+    ]);
+
+    return result.rows[0];
+  } catch (err) {
+    if (err.code === "23505") {
+      const error = new Error("Email or username already exists");
+      error.status = 409;
+      throw error;
+    }
+
     throw err;
   }
-
-  const hashed = await bcrypt.hash(password, 10);
-
-  const query = `INSERT INTO users (username, email, password_hash) VALUES ($1, $2, $3) RETURNING user_id, username, email, role`;
-  const result = await db.query(query, [username, email, hashed]);
-  return result.rows[0];
 };
 
-export const loginUser = async (username, password) => {
-  const query = `SELECT user_id, username, role, password_hash FROM users WHERE username = $1`;
-  const result = await db.query(query, [username]);
+export const loginUser = async (email, password) => {
+
+  const query = `
+  SELECT user_id, email, username, password_hash, display_name, avatar_url, role, status FROM users 
+  WHERE email = $1
+  `;
+
+  const result = await db.query(query, [email]);
 
   const invalidErr = () => {
     const err = new Error("Invalid credentials");
@@ -34,13 +52,21 @@ export const loginUser = async (username, password) => {
 
   if (!match) throw invalidErr();
 
-  return user;
+  const { password_hash, ...safeUser } = user;
+
+  return safeUser;
+
 };
 
-export const findByEmail = async (email) => {
-  const query = `SELECT user_id, email FROM users WHERE email =  $1`;
+export const getUserForAuth = async (userId) => {
+  const query = `
+    SELECT user_id, role, status
+    FROM users
+    WHERE user_id = $1
+    AND deleted_at IS NULL
+  `;
 
-  const result = await db.query(query, [email]);
+  const result = await db.query(query, [userId]);
 
-  return result.rows[0];
+  return result.rows[0] ?? null;
 };

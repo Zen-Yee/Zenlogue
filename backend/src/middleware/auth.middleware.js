@@ -1,25 +1,52 @@
-import jwt from "jsonwebtoken";
 
-export const authMiddleware = (req, res, next) => {
-  const token = req.cookies?.token; // read token from httpOnly cookie
+import jwt from "jsonwebtoken";
+import * as authService from "../modules/auth/auth.service.js";
+
+export const authMiddleware = async (req, res, next) => {
+  const token = req.cookies?.token;
 
   if (!token) {
-    // No token provided
     const err = new Error("Authentication required");
-    err.status = 401; // 401 Unauthorized
+    err.status = 401;
     return next(err);
   }
 
+  let decoded;
+
   try {
-    const decoded = jwt.verify(token, process.env.JWT_SECRET); // verify JWT
-    req.user = decoded; // attach decoded user to req.user
-    next(); // continue to next middleware/route
-    
+    decoded = jwt.verify(token, process.env.JWT_SECRET);
   } catch (err) {
     const error = new Error(
-      err.name === "TokenExpiredError" ? "Token has expired" : "Invalid token"
+      err.name === "TokenExpiredError"
+        ? "Token has expired"
+        : "Invalid token"
     );
     error.status = 401;
     return next(error);
+  }
+
+  try {
+    const user = await authService.getUserForAuth(decoded.userId);
+
+    if (!user) {
+      const err = new Error("User not found");
+      err.status = 401;
+      return next(err);
+    }
+
+    if (user.status !== "active") {
+      const err = new Error("Account is unavailable");
+      err.status = 403;
+      return next(err);
+    }
+
+    req.user = {
+      userId: user.user_id,
+      role: user.role,
+    };
+
+    return next();
+  } catch (err) {
+    return next(err);
   }
 };
