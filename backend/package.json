@@ -6,7 +6,7 @@
   "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "migrate": "node migrate.js",
+    "migrate": "node migration/migrate.js",
     "start": "node server.js"
   },
   "keywords": [],

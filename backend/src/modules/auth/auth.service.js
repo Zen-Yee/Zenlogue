@@ -13,8 +13,8 @@ export const createUser = async (username, email, password) => {
 
   try {
     const result = await db.query(query, [
-      username,
       email,
+      username,
       passwordHash,
     ]);
 
