@@ -2,7 +2,7 @@ import db from "../../config/pool.js";
 import bcrypt from "bcrypt";
 
 export const createUser = async (username, email, password) => {
-  // Check existing user
+
   const existingUser = await findByEmail(email);
   if (existingUser) {
     const err = new Error("Email already exists");
@@ -11,6 +11,7 @@ export const createUser = async (username, email, password) => {
   }
 
   const hashed = await bcrypt.hash(password, 10);
+
   const query = `INSERT INTO users (username, email, password_hash) VALUES ($1, $2, $3) RETURNING user_id, username, email, role`;
   const result = await db.query(query, [username, email, hashed]);
   return result.rows[0];
